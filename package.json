@@ -1,0 +1,29 @@
+{
+  "name": "yt-music-dl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format:check": "prettier --check ./src",
+    "format:write": "prettier --write ./src",
+    "lint:check": "eslint --ext .ts ./src/**",
+    "lint:fix": "eslint --ext .ts ./src/** --fix"
+  },
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "prompts": "^2.4.2",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.2",
+    "@types/prompts": "^2.4.4",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
