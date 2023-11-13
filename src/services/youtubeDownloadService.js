@@ -10,7 +10,7 @@ const { writeFile } = require('../helpers/fsHelper');
 const videoInfoCacheFile = path.join(__dirname, '../../.cache/videoInfo.json');
 
 /**
- * @typedef {Object} ytMetadata
+ * @typedef {object} ytMetadata
  * @property {string} title
  * @property {string} artist
  * @property {string} album
@@ -39,7 +39,7 @@ class YoutubeDownloadService {
     const metadata = {
       title: videoInfo.videoDetails.title,
       artist: videoInfo.videoDetails.ownerChannelName,
-      album: null,
+      album: null
     };
 
     const keySearched = 'videoDescriptionMusicSectionRenderer';
@@ -52,8 +52,8 @@ class YoutubeDownloadService {
           break;
         }
         case 'ARTIST': {
-          // metadata.artist = row.infoRowRenderer.defaultMetadata.simpleText; // runs[0].text;
-          metadata.artist = row.infoRowRenderer.defaultMetadata.runs[0].text;
+          metadata.artist = row.infoRowRenderer.defaultMetadata.simpleText; // runs[0].text;
+          // metadata.artist = row.infoRowRenderer.defaultMetadata.runs[0].text;
           break;
         }
         case 'ALBUM': {
@@ -86,7 +86,7 @@ class YoutubeDownloadService {
       {
         clearOnComplete: false,
         hideCursor: true,
-        format: '[{bar}] | {percentage}% | {value}/{total} Mb',
+        format: '[{bar}] | {percentage}% | {value}/{total} Mb'
       },
       cliProgress.Presets.legacy
     );
@@ -123,6 +123,4 @@ class YoutubeDownloadService {
   }
 }
 
-module.exports = {
-  ytdlService: YoutubeDownloadService.getInstance(),
-};
+module.exports = { ytdlService: YoutubeDownloadService.getInstance() };

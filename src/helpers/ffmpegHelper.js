@@ -5,7 +5,7 @@ const { promisify } = require('node:util');
 const child_process_exec = promisify(exec);
 
 /**
- * @typedef {Object} ffmpegMetadata
+ * @typedef {object} ffmpegMetadata
  * @property {string} title
  * @property {string} artist
  * @property {string} album
@@ -19,7 +19,7 @@ const child_process_exec = promisify(exec);
  * @returns {string}
  */
 const execCommand = async (command) => {
-  let { stdout } = await child_process_exec(command);
+  const { stdout } = await child_process_exec(command);
   return stdout;
 };
 
@@ -46,22 +46,20 @@ const extractAudioFromVideo = async (inputVideoFile, outputAudioFile) => {
 };
 
 /**
- * @param {string inputAudioFile
+ * @param {string} inputAudioFile
  * @param {string} coverFile
  * @param {ffmpegMetadata} metadata
  * @param {string} outputAudioFile
  * @returns {Promise<string>}
  */
 const writeTagsToAudioFile = async (inputAudioFile, coverFile, metadata, outputAudioFile) => {
-  const command = `ffmpeg -y -i "${inputAudioFile}" -i "${coverFile}" -map 0 -map 1 -codec copy -disposition:v:0 attached_pic -write_id3v2 1 ${metadataToString(
-    metadata
-  )} "${outputAudioFile}"`;
+  const command = `ffmpeg -y -i "${inputAudioFile}" -i "${coverFile}" -map 0 -map 1 -codec copy -disposition:v:0 attached_pic -write_id3v2 1 ${metadataToString(metadata)} "${outputAudioFile}"`;
   return execCommand(command);
 };
 
 module.exports = {
   extractAudioFromVideo,
-  writeTagsToAudioFile,
+  writeTagsToAudioFile
 };
 
 /*

@@ -44,7 +44,7 @@ const main = async () => {
     artist: spotifyTags.artist,
     album: spotifyTags.album,
     date: spotifyTags.releaseYear,
-    track: spotifyTags.trackNumber,
+    track: spotifyTags.trackNumber
     // genre: 'Test genre',
   };
   await writeTagsToAudioFile(audioFileTmp, coverFile, metadata, audioFile);

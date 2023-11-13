@@ -4,7 +4,14 @@
  */
 const isPrimitive = (value) => {
   const type = typeof value;
-  return value === null || ['undefined', 'string', 'number', 'boolean', 'symbol', 'bigint'].includes(type);
+  return value === null || [
+    'undefined',
+    'string',
+    'number',
+    'boolean',
+    'symbol',
+    'bigint'
+  ].includes(type);
 };
 
 /**
@@ -33,5 +40,5 @@ const deepSearchForKey = (obj, keySearched, currentPath = '') => {
 
 module.exports = {
   isPrimitive,
-  deepSearchForKey,
+  deepSearchForKey
 };

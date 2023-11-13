@@ -6,10 +6,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format:check": "prettier --check ./src",
-    "format:write": "prettier --write ./src",
-    "lint:check": "eslint --ext .ts ./src/**",
-    "lint:fix": "eslint --ext .ts ./src/** --fix"
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "cli-progress": "^3.12.0",
@@ -19,9 +16,8 @@
   "devDependencies": {
     "@types/cli-progress": "^3.11.2",
     "@types/prompts": "^2.4.4",
-    "eslint": "^8.48.0",
-    "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.3"
+    "eslint": "8.53.0",
+    "eslint-plugin-jsdoc": "46.9.0"
   },
   "keywords": [],
   "author": "",

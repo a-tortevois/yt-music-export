@@ -1,4 +1,66 @@
+// C:\Users\Alexandre\AppData\Roaming\Code\User
 {
+  // "[css][scss][less]": {
+  //   "editor.defaultFormatter": "vscode.css-language-features"
+  // },
+  // "[html]": {
+  //   "editor.defaultFormatter": "vscode.html-language-features"
+  // },
+  // "[javascript][typescript]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  // },
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // "[markdown]": {
+  //   "diffEditor.ignoreTrimWhitespace": false,
+  //   "editor.defaultFormatter": "vscode.markdown-language-features",
+  //   "editor.quickSuggestions": {
+  //     "comments": "off",
+  //     "other": "off",
+  //     "strings": "off"
+  //   },
+  //   "editor.unicodeHighlight.ambiguousCharacters": false,
+  //   "editor.unicodeHighlight.invisibleCharacters": false,
+  //   "editor.wordWrap": "on"
+  // },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.sortJSON": false
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.detectIndentation": false,
+  "editor.fontSize": 13,
+  "editor.fontWeight": "normal",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.guides.bracketPairs": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    // "json",
+    "jsonc",
+    "typescript",
+    // "markdown",
+    "yaml"
+  ],
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.git": true
+  },
+  "files.insertFinalNewline": true,
+  "html.format.wrapAttributes": "force-aligned",
+  "http.proxyAuthorization": null,
+  "remote.SSH.remotePlatform": {
+    "10.0.0.1": "linux"
+  },
+  "terminal.external.windowsExec": "C:\\Program Files\\Git\\git-bash.exe",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "workbench.colorTheme": "Default Dark+"
 }

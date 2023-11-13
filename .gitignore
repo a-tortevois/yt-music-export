@@ -1,4 +1,9 @@
+.cache/**
+.vscode/
 build/
 node_modules/
-.cache/**
+.editorconfig
+.eslintrc.js
+.gitignore
+package-lock.json
 src/services/spotify.secret.js

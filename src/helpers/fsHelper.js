@@ -7,7 +7,7 @@ const path = require('node:path');
 
 /**
  * @param {string} path
- * @return {Promise<boolean>}
+ * @returns {Promise<boolean>}
  */
 const isDirectory = async (path) => {
   try {
@@ -21,7 +21,7 @@ const isDirectory = async (path) => {
 
 /**
  * @param {string} path
- * @return {Promise<boolean>}
+ * @returns {Promise<boolean>}
  */
 const isFileExists = async (path) => {
   try {
@@ -49,5 +49,5 @@ module.exports = {
   // __dirname,
   isDirectory,
   isFileExists,
-  writeFile: _writeFile,
+  writeFile: _writeFile
 };

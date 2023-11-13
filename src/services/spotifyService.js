@@ -13,7 +13,7 @@ const spotifyResults = path.join(__dirname, '../../.cache/spotifyResults.json');
 const spotifyApiBaseUrl = 'https://api.spotify.com/v1';
 
 /**
- * @typedef {Object} SpotifyTags
+ * @typedef {object} SpotifyTags
  * @property {string} title
  * @property {string} artist
  * @property {string} album
@@ -25,7 +25,7 @@ const spotifyApiBaseUrl = 'https://api.spotify.com/v1';
  */
 
 /**
- * @typedef {Object} SpotifyQueryParams
+ * @typedef {object} SpotifyQueryParams
  * @property {string} [title]
  * @property {string} [artist]
  * @property {string} [album]
@@ -36,13 +36,13 @@ const spotifyApiBaseUrl = 'https://api.spotify.com/v1';
  */
 class SpotifyService {
   /**
-   * @constructor
+   * @class
    * @private
    */
   constructor() {
     this.spotifyCredentials = {
       accessToken: null,
-      expirationDate: 0,
+      expirationDate: 0
     };
   }
 
@@ -77,11 +77,11 @@ class SpotifyService {
       const response = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
         headers: {
-          Authorization: basicAuthHeader,
+          'Authorization': basicAuthHeader,
           'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json',
+          'Accept': 'application/json'
         },
-        body: 'grant_type=client_credentials',
+        body: 'grant_type=client_credentials'
       });
 
       if (response.status === 200) {
@@ -121,7 +121,7 @@ class SpotifyService {
       trackNumber: Number(item.track_number),
       duration: this.msToReadableString(item.duration_ms),
       coverUrl: item.album.images[0].url,
-      genre: '',
+      genre: ''
     };
   }
 
@@ -153,7 +153,7 @@ class SpotifyService {
       q: `remaster`,
       type: 'track',
       market: 'FR',
-      limit: 25,
+      limit: 25
     };
     if (artist) {
       searchParams.q += ` artist:${artist}`;
@@ -173,10 +173,10 @@ class SpotifyService {
       const response = await fetch(`${spotifyApiBaseUrl}/search?${new URLSearchParams(searchParams).toString()}`, {
         method: 'GET',
         headers: {
-          Authorization: accessToken,
+          'Authorization': accessToken,
           'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+          'Accept': 'application/json'
+        }
       });
 
       if (response.status === 200) {
@@ -187,10 +187,9 @@ class SpotifyService {
           results.push(this.cleanSpotifyItem(rawItem));
         }
         return results;
-      } else {
-        console.log(JSON.stringify(response, null, 2));
-        throw new Error(`Unable to search for item, request failed with error code ${response.status}`);
       }
+      console.log(JSON.stringify(response, null, 2));
+      throw new Error(`Unable to search for item, request failed with error code ${response.status}`);
     } catch (err) {
       console.error(err);
       process.exit();
@@ -209,17 +208,15 @@ class SpotifyService {
         title: `#${(index + 1).toString().padStart(2, '0')}: ${result.title} - ${result.artist} - ${result.album} - ${result.releaseYear} - ${result.trackNumber} - ${
           result.duration
         }`,
-        value: index,
+        value: index
       });
     }
-    const { selectedTags } = await prompts([
-      {
-        type: 'select',
-        name: 'selectedTags',
-        message: 'Select tags from Spotify:',
-        choices,
-      },
-    ]);
+    const { selectedTags } = await prompts([{
+      type: 'select',
+      name: 'selectedTags',
+      message: 'Select tags from Spotify:',
+      choices
+    }]);
     return results[selectedTags];
   }
 
@@ -245,6 +242,4 @@ class SpotifyService {
   }
 }
 
-module.exports = {
-  spotifyService: SpotifyService.getInstance(),
-};
+module.exports = { spotifyService: SpotifyService.getInstance() };
