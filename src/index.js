@@ -1,4 +1,6 @@
-const { copyFile, rm } = require('node:fs/promises');
+'use strict';
+
+const { copyFile, readFile, rm } = require('node:fs/promises');
 const path = require('node:path');
 
 const { extractAudioFromVideo, writeTagsToAudioFile } = require('./helpers/ffmpegHelper');
@@ -12,18 +14,28 @@ const outputFolder = 'D:\\Downloads';
 const main = async () => {
   console.time('exec_time');
 
+  const { videoId, artist, album, title } = JSON.parse((await readFile(path.join(__dirname, 'info.json'))).toString());
+  console.log(JSON.stringify({ videoId, artist, album, title }, null, 2));
+
   // clear the console
   process.stdout.write('\u001b[2J\u001b[0;0H');
 
-  if (process.argv.length < 3) {
+  if (!videoId) {
     throw new Error(`No videoId found!`);
   }
-  const videoId = process.argv[2];
+
+  if (!artist) {
+    throw new Error(`No artist found!`);
+  }
+
+  if (!title) {
+    throw new Error(`No title found!`);
+  }
 
   await spotifyService.init();
 
   console.log(`-- Get video info from Youtube`);
-  const [videoFile, ytMetadata] = await ytdlService.downloadFromVideoId(videoId);
+  const videoFile = await ytdlService.downloadFromVideoId(videoId, artist, title);
   const audioFile = path.join(__dirname, `../.cache/${path.basename(videoFile, path.extname(videoFile))}.m4a`);
   console.log(``);
 
@@ -31,7 +43,7 @@ const main = async () => {
   await extractAudioFromVideo(videoFile, audioFileTmp);
 
   console.log(`-- Get tags from Spotify`);
-  const spotifyResults = await spotifyService.searchForItem({ artist: ytMetadata.artist, album: ytMetadata.album, track: ytMetadata.title });
+  const spotifyResults = await spotifyService.searchForItem({ artist, album, track: title });
   const spotifyTags = await spotifyService.selectTagsFromResults(spotifyResults);
   console.log('Selected:', spotifyTags);
 

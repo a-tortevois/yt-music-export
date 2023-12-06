@@ -1,5 +1,7 @@
+'use strict';
+
 const { exec } = require('node:child_process');
-const path = require('node:path');
+// const path = require('node:path');
 const { promisify } = require('node:util');
 
 const child_process_exec = promisify(exec);
@@ -42,7 +44,7 @@ const metadataToString = (metadata) => {
  */
 const extractAudioFromVideo = async (inputVideoFile, outputAudioFile) => {
   const command = `ffmpeg -y -i "${inputVideoFile}" -vn -codec copy "${outputAudioFile}"`;
-  return execCommand(command);
+  return await execCommand(command);
 };
 
 /**
@@ -54,7 +56,7 @@ const extractAudioFromVideo = async (inputVideoFile, outputAudioFile) => {
  */
 const writeTagsToAudioFile = async (inputAudioFile, coverFile, metadata, outputAudioFile) => {
   const command = `ffmpeg -y -i "${inputAudioFile}" -i "${coverFile}" -map 0 -map 1 -codec copy -disposition:v:0 attached_pic -write_id3v2 1 ${metadataToString(metadata)} "${outputAudioFile}"`;
-  return execCommand(command);
+  return await execCommand(command);
 };
 
 module.exports = {

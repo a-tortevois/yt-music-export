@@ -1,3 +1,5 @@
+'use strict';
+
 const { createWriteStream } = require('node:fs');
 const { readFile } = require('node:fs/promises');
 const https = require('node:https');
@@ -234,9 +236,9 @@ class SpotifyService {
           resolve();
         });
       });
-      request.on('error', async (err) => {
+      request.on('error', (err) => {
         console.error(`Error downloading cover image: ${err}`);
-        reject();
+        reject(err);
       });
     });
   }

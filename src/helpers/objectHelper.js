@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @param {*} value
  * @returns {boolean}
