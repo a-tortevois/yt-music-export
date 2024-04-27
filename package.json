@@ -1,0 +1,24 @@
+{
+  "name": "yt-music-dl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:fix": "npx @biomejs/biome lint --apply ."
+  },
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "prompts": "^2.4.2",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@types/cli-progress": "^3.11.2",
+    "@types/prompts": "^2.4.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
